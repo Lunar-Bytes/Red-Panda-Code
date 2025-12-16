@@ -10,6 +10,31 @@ class Entity:
         self.image = None
         self.pos = [400, 300]
         self.speed = 10
+        self.controls = {}
+
+    def sprite(self, path):
+        try:
+            img = Image.open(path)
+            self.image = ImageTk.PhotoImage(img)
+            print(f"{self.name} sprite loaded: {path}")
+        except Exception as e:
+            print(f"Error loading sprite for {self.name}:", e)
+            self.image = None
+
+    def position(self, x, y):
+        self.pos[0] = int(x)
+        self.pos[1] = int(y)
+        print(f"{self.name} position set to ({x}, {y})")
+
+    def move(self, direction, key=None):
+        if key:
+            self.controls[key.lower()] = direction
+
+    def __init__(self, name):
+        self.name = name
+        self.image = None
+        self.pos = [400, 300]
+        self.speed = 10
         self.controls = {}  # key -> direction
 
     def sprite(self, path):
