@@ -5,18 +5,17 @@ y = 5x
 z = x + y * x / y
 
 game.init()
-
 game.title("Red Panda Game")
-game.size("w=1660, h=900")
+game.size("w=800, h=600")
 
 game.player.sprite("assets/sprites/player.png")
 
 player = game.player
 
-player.move("up", 'w')
-player.move("down", 's')
-player.move("right", 'd')
-player.move("left", 'a')
+player.move(up, 'w')
+player.move(down, 's')
+player.move(right, 'd')
+player.move(left, 'a')
 
 game.window_text(pos="left, top", text=z)
 

@@ -1,32 +1,27 @@
 import re
 
-def preprocess(code: str) -> str:
-    lines = code.splitlines()
-    processed_lines = []
+def preprocess_rpc(code: str) -> str:
+    """
+    Preprocess Red Panda Code before execution:
+    - Convert shorthand math like 5x -> 5 * x
+    - Convert directions up/down/left/right to strings
+    - Preserve spaces inside string literals
+    """
 
-    for line in lines:
-        original = line
+    # Split code into string literals and non-string parts
+    parts = re.split(r'(\".*?\"|\'.*?\')', code)
 
-        # Ignore empty lines and comments
-        stripped = line.strip()
-        if not stripped or stripped.startswith("#"):
-            processed_lines.append(line)
+    for i, part in enumerate(parts):
+        # Skip string literals
+        if part.startswith('"') or part.startswith("'"):
             continue
 
-        # --- Implicit multiplication rules ---
+        # Convert shorthand math: 5x -> 5 * x
+        part = re.sub(r'(\d)([a-zA-Z_]\w*)', r'\1*\2', part)
 
-        # 5x -> 5 * x
-        line = re.sub(r'(\d)([a-zA-Z_])', r'\1 * \2', line)
+        # Convert directions to strings automatically
+        part = re.sub(r'\b(up|down|left|right)\b', r'"\1"', part)
 
-        # x5 -> x * 5
-        line = re.sub(r'([a-zA-Z_])(\d)', r'\1 * \2', line)
+        parts[i] = part
 
-        # 2(x + y) -> 2 * (x + y)
-        line = re.sub(r'(\d)\s*\(', r'\1 * (', line)
-
-        # )( -> ) * (
-        line = re.sub(r'\)\s*\(', r') * (', line)
-
-        processed_lines.append(line)
-
-    return "\n".join(processed_lines)
+    return ''.join(parts)
