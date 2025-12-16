@@ -1,23 +1,16 @@
-print("Red Panda Code!")
-
-x = 52
-y = 5x
-z = x + y * x / y
-
 game.init()
 
 game.title("Red Panda Game")
 game.size("w=800, h=600")
 
 game.player.sprite("D:/CStuff/joars/Desktop/python_libraries/red-panda-code/redpanda/assets/sprites/player.png")
-
 player = game.player
-
 player.move(up, 'w')
 player.move(down, 's')
 player.move(right, 'd')
 player.move(left, 'a')
 
-game.window_text(pos="left, top", text=z)
+game.object.sprite("D:/CStuff/joars/Desktop/python_libraries/red-panda-code/redpanda/assets/sprites/object.png")
+object = game.object
 
 game.render()

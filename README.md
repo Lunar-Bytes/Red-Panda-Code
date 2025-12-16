@@ -14,3 +14,4 @@ Make an issue if you find a bug!
 To download and use this, you should just be able to type <code>pip install red-panda-code</code>.
 
 ## Thanks for using
+Pypi site:
