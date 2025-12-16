@@ -1,7 +1,7 @@
 game.init()
 
-game.title("Red Panda Game")
-game.size("w=800, h=600")
+game.title("!Red Panda Game!")
+game.size("w=800, h=800")
 
 game.player.sprite("D:/CStuff/joars/Desktop/python_libraries/red-panda-code/redpanda/assets/sprites/player.png")
 player = game.player
@@ -10,7 +10,11 @@ player.move(down, 's')
 player.move(right, 'd')
 player.move(left, 'a')
 
-game.object.sprite("D:/CStuff/joars/Desktop/python_libraries/red-panda-code/redpanda/assets/sprites/object.png")
-object = game.object
+game.player2.sprite("D:/CStuff/joars/Desktop/python_libraries/red-panda-code/redpanda/assets/sprites/player.png")
+player2 = game.player2
+player2.move(up, 'w')
+player2.move(down, 's')
+player2.move(right, 'a')
+player2.move(left, 'd')
 
 game.render()
