@@ -1,0 +1,5 @@
+print("Red Panda Code works!")
+
+x = 10
+y = 5x
+print(y)
